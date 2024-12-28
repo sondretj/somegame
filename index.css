@@ -1,0 +1,169 @@
+.monitor {
+    width: 1440px;
+    height: 720px;
+    border: 1px solid black;
+    margin: auto;
+}
+
+.game {
+    .start_screen {
+        opacity: 0;
+    }
+}
+
+.level_container {
+    position: relative;
+}
+
+
+/*Level one*/
+.level_one_floor {
+    background: darkgreen;
+    position: absolute;
+    bottom: -720px;
+    height: 200px;
+    width: 100%;
+}
+
+/* player */
+
+.player {
+    &.container {
+        height: 50px;
+        width: 5px;
+
+        .inner {
+            background: grey;
+            opacity: 0.5;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            .torso {
+                anchor-name: --torso-anchor;
+                width: 5px;
+                height: 30px;
+                background: blue;
+            }
+
+            .legs {
+                anchor-name: --legs-anchor;
+                width: 5px;
+                height: 20px;
+                background: violet;
+            }
+        }
+
+
+    }
+
+    .sword {
+        width: 15px;
+        height: 2px;
+        background: black;
+        position: absolute;
+
+        &.right {
+            transform-origin: top left;
+            position-anchor: --torso-anchor;
+            position-area: center right;
+            transform: rotate(-50deg);
+
+            &.strike {
+                animation: 50ms linear right-strike;
+
+            }
+        }
+
+        &.left {
+            transform-origin: top right;
+            position-anchor: --torso-anchor;
+            position-area: center left;
+            transform: rotate(50deg);
+
+            &.strike {
+                animation: 50ms linear left-strike;
+            }
+        }
+
+    }
+
+    &.crouch.container {
+        .inner {
+
+            .torso {
+                anchor-name: --torso-anchor;
+                width: 5px;
+                height: 0px;
+                background: blue;
+            }
+
+            .legs {
+                width: 30px;
+                height: 10px;
+                background: violet;
+                margin-left: -15px;
+            }
+        }
+
+        .sword {
+            &.right {
+                transform-origin: top left;
+                position-anchor: --legs-anchor;
+                position-area: center right;
+                transform: rotate(-50deg);
+
+                &.strike {
+                    animation: 50ms linear right-strike;
+
+                }
+            }
+
+            &.left {
+                transform-origin: top right;
+                position-anchor: --legs-anchor;
+                position-area: center left;
+                transform: rotate(50deg);
+
+                &.strike {
+                    animation: 50ms linear left-strike;
+                }
+            }
+
+        }
+
+    }
+}
+
+@keyframes right-strike {
+    from {
+        /* pushes the sun down past the viewport */
+        transform: rotate(-50deg);
+    }
+    to {
+        /* returns the sun to its default position */
+        transform: rotate(50deg);
+    }
+}
+
+@keyframes left-strike {
+    from {
+        /* pushes the sun down past the viewport */
+        transform: rotate(50deg);
+    }
+    to {
+        /* returns the sun to its default position */
+        transform: rotate(-50deg);
+    }
+}
+
+@keyframes crouch {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(20px);
+    }
+}

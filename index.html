@@ -1,0 +1,22 @@
+<!doctype html>
+
+<html lang="en">
+<body>
+<div class="monitor">
+    <div id="game" class="game">
+        <div id="level_container" class="level_container">
+        </div>
+        <div id="start_screen" class="start_screen">
+            <button id="start_button">Start game</button>
+        </div>
+    </div>
+
+</div>
+</body>
+<link href="./index.css" rel="stylesheet"></link>
+<script type="module">
+    import {Game} from "./Game.js";
+
+    const game = new Game();
+</script>
+</html>
